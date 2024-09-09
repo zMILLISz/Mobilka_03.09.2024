@@ -1,260 +1,173 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import java.util.Scanner;
+import java.time.format.DateTimeParseException;
+import java.util.List;
+
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-//      Задача 1
-        System.out.print("Введите число: ");
-        int number = scanner.nextInt();
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
 
-        if (number % 2 == 0) {
-            System.out.println("Число четное");
-        }else {
-            System.out.println("Число нечетное");
+    // 1. Функция для нахождения максимума
+    public static int FindMax (int a, int b){
+        if (a == b){
+            System.err.println("Числа равны!");
         }
-        scanner.close();
+        return Math.max(a, b);
+    }
+    // 2. Калькулятор деления
+    public static double divide(double numerator, double denominator) {
+        if (denominator == 0) {
+            throw new ArithmeticException("Недопустимо деление на ноль.");
+        }
+        return numerator / denominator;
+    }
 
-//      Задача 2
-//        System.out.println("Введите первое число:");
-//        int num1 = scanner.nextInt();
-//
-//        System.out.println("Введите второе число:");
-//        int num2 = scanner.nextInt();
-//
-//        System.out.println("Введите третье число:");
-//        int num3 = scanner.nextInt();
-//
-//        int min = Math.min(num1, Math.min(num2, num3));
-//        System.out.println("Минимальное число: " + min);
-//        scanner.close();
+    // 3. Конвертер строк в числа
+    public static int convertStringToInt(String str) {
+        try {
+            return Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Невозможно конвертировать строку в целое число.");
+        }
+    }
 
-//      Задача 3
-//        System.out.println("Таблица умножения на 5:");
-//        for (int i = 1; i <= 10; i++) {
-//            System.out.println("5 * " + i + " = " + (5 * i));
-//        }
-//        scanner.close();
+    // 4. Проверка возраста
+    public static void checkAge(int age) {
+        if (age < 0 || age > 150) {
+            throw new IllegalArgumentException("Возраст должен быть в пределах 0-150.");
+        }
+    }
 
-//      Задача 4
-//        System.out.print("Введите целое число N для суммы от 1 до N: ");
-//        int N = scanner.nextInt();
-//        int sum = (N * (N + 1)) / 2;
-//        System.out.println("Сумма чисел от 1 до " + N + " = " + sum);
-//        scanner.close();
+    // 5. Нахождение корня
+    public static double findSquareRoot(double number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("Отрицательное число не имеет квадратного корня.");
+        }
+        return Math.sqrt(number);
+    }
 
-//      Задача 5
-//        System.out.print("Введите целое число N для чисел Фибоначчи: ");
-//        int fibN = scanner.nextInt();
-//        int a = 0, b = 1;
-//        System.out.print("Числа Фибоначчи: ");
-//        for (int i = 1; i <= fibN; i++) {
-//            System.out.print(a + " ");
-//            int next = a + b;
-//            a = b;
-//            b = next;
-//        }
-//        System.out.println();
-//        scanner.close();
+    // 6. Факториал
+    public static long calculateFactorial(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("Факториал не определен для отрицательных чисел.");
+        }
+        long factorial = 1;
+        for (int i = 2; i <= number; i++) {
+            factorial *= i;
+        }
+        return factorial;
+    }
 
-//      Задача 6
-//        System.out.print("Введите целое число для проверки простоты: ");
-//        int primeNumber = scanner.nextInt();
-//        boolean isPrime = primeNumber > 1;
-//        for (int i = 2; i <= Math.sqrt(primeNumber); i++) {
-//            if (primeNumber % i == 0) {
-//                isPrime = false;
-//                break;
-//            }
-//        }
-//        System.out.println(primeNumber + " является простым: " + isPrime);
-//        scanner.close();
+    // 7. Проверка массива на нули
+    public static void checkArrayForZeros(int[] array) {
+        for (int num : array) {
+            if (num == 0) {
+                throw new IllegalArgumentException("Массив содержит нули.");
+            }
+        }
+    }
 
-//      Задача 7
-//        System.out.print("Введите целое число N для обратного порядка: ");
-//        int reverseN = scanner.nextInt();
-//        System.out.print("Числа от " + reverseN + " до 1: ");
-//        for (int i = reverseN; i >= 1; i--) {
-//            System.out.print(i + " ");
-//        }
-//        System.out.println();
-//        scanner.close();
+    // 8. Калькулятор возведения в степень
+    public static double power(double base, int exponent) {
+        if (exponent < 0) {
+            throw new IllegalArgumentException("Степень не должна быть отрицательной.");
+        }
+        return Math.pow(base, exponent);
+    }
 
-//      Задача 8
-//        System.out.print("Введите два целых числа A и B для суммы четных чисел: ");
-//        int A = scanner.nextInt();
-//        int B = scanner.nextInt();
-//        int evenSum = 0;
-//        for (int i = A; i <= B; i++) {
-//            if (i % 2 == 0) {
-//                evenSum += i;
-//            }
-//        }
-//        System.out.println("Сумма четных чисел от " + A + " до " + B + " = " + evenSum);
-//        scanner.close();
+    // 9. Обрезка строки
+    public static String trimString(String str, int length) {
+        if (length > str.length()) {
+            throw new IllegalArgumentException("Длина обрезки превышает длину строки.");
+        }
+        return str.substring(0, length);
+    }
 
-//      Задача 9
-//        System.out.print("Введите строку для реверса: ");
-//        String str = scanner.nextLine();
-//        String reversedStr = new StringBuilder(str).reverse().toString();
-//        System.out.println("Реверс строки: " + reversedStr);
-//        scanner.close();
+    // 10. Поиск элемента в массиве
+    public static int findElementInArray(int[] array, int element) {
+        for (int num : array) {
+            if (num == element) {
+                return num;
+            }
+        }
+        throw new IllegalArgumentException("Элемент не найден в массиве.");
+    }
 
-//      Задача 10
-//        System.out.print("Введите целое число для подсчета цифр: ");
-//        int digitCount = Math.abs(scanner.nextInt());
-//        System.out.println("Количество цифр: " + String.valueOf(digitCount).length());
-//        scanner.close();
+    // 11. Конвертация в двоичную систему
+    public static String convertToBinary(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("Отрицательные числа не могут быть конвертированы в двоичную систему.");
+        }
+        return Integer.toBinaryString(number);
+    }
 
-//      Задача 11
-//        System.out.print("Введите целое число N для факториала: ");
-//        int factorialN = scanner.nextInt();
-//        long factorial = 1;
-//        for (int i = 1; i <= factorialN; i++) {
-//            factorial *= i;
-//        }
-//        System.out.println("Факториал " + factorialN + " = " + factorial);
-//        scanner.close();
+    // 12. Проверка делимости
+    public static boolean isDivisible(int a, int b) {
+        if (b == 0) {
+            throw new ArithmeticException("Недопустимо деление на ноль.");
+        }
+        return a % b == 0;
+    }
 
-//      Задача 12
-//        System.out.print("Введите целое число для суммы цифр: ");
-//        int sumDigits = Math.abs(scanner.nextInt());
-//        int sumOfDigits = 0;
-//        while (sumDigits > 0) {
-//            sumOfDigits += sumDigits % 10;
-//            sumDigits /= 10;
-//        }
-//        System.out.println("Сумма цифр = " + sumOfDigits);
-//        scanner.close();
+    // 13. Чтение элемента списка
+    public static <T> T getElementFromList(java.util.List<T> list, int index) {
+        if (index < 0 || index >= list.size()) {
+            throw new IndexOutOfBoundsException("Индекс выходит за пределы списка.");
+        }
+        return list.get(index);
+    }
 
-//      Задача 13
-//        System.out.print("Введите строку для проверки на палиндром: ");
-//        String palindromeCheck = scanner.nextLine();
-//        String normalizedString = palindromeCheck.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-//        String reversedPalindrome = new StringBuilder(normalizedString).reverse().toString();
-//        System.out.println("Строка является палиндромом: " + normalizedString.equals(reversedPalindrome));
-//        scanner.close();
+    // 14. Парольная проверка
+    public static void checkPasswordStrength(String password) {
+        if (password == null || password.length() < 8) {
+            throw new IllegalArgumentException("Пароль слишком слабый.");
+        }
+    }
 
-//      Задача 14
-//        System.out.print("Введите размер массива: ");
-//        int size = scanner.nextInt();
-//        int[] array = new int[size];
-//        System.out.println("Введите элементы массива:");
-//        for (int i = 0; i < size; i++) {
-//        System.out.print("Элемент " + (i + 1) + ": ");
-//            array[i] = scanner.nextInt();
-//        }
-//        int max = array[0];
-//        for (int num : array) {
-//            if (num > max) {
-//                max = num;
-//            }
-//        }
-//        System.out.println("Максимальное число в массиве: " + max);
-//        scanner.close();
+    // 15. Проверка даты
+    public static void checkDate(String date) {
+        if (!date.matches("\\d{2}\\.\\d{2}\\.\\d{4}")) {
+            throw new DateTimeParseException("Некорректная дата", date, 0);
+        }
+    }
 
-//      Задача 15
-//        System.out.print("Введите размер массива: ");
-//        int size = scanner.nextInt();
-//        int[] array = new int[size];
-//
-//        System.out.println("Введите элементы массива:");
-//        for (int i = 0; i < size; i++) {
-//            System.out.print("Элемент " + (i + 1) + ": ");
-//            array[i] = scanner.nextInt();
-//        }
-//        int sum = 0;
-//        for (int num : array) {
-//            sum += num;
-//        }
-//        System.out.println("Сумма всех элементов массива: " + sum);
-//        scanner.close();
+    // 16. Конкатенация строк
+    public static String concatenateStrings(String str1, String str2) {
+        if (str1 == null || str2 == null) {
+            throw new NullPointerException("Одна из строк равна null!");
+        }
+        return str1 + str2;
+    }
 
-//      Задача 16
-//        System.out.print("Введите размер массива: ");
-//        int size = scanner.nextInt();
-//        int[] array = new int[size];
-//
-//        System.out.println("Введите элементы массива:");
-//        for (int i = 0; i < size; i++) {
-//            System.out.print("Элемент " + (i + 1) + ": ");
-//            array[i] = scanner.nextInt();
-//        }
-//
-//        int positiveCount = 0;
-//        int negativeCount = 0;
-//
-//        for (int num : array) {
-//            if (num > 0) {
-//                positiveCount++;
-//            } else if (num < 0) {
-//                negativeCount++;
-//            }
-//        }
-//        System.out.println("Количество положительных чисел: " + positiveCount);
-//        System.out.println("Количество отрицательных чисел: " + negativeCount);
-//        scanner.close();
+    // 17. Остаток от деления
+    public static int remainder(int a, int b) {
+        if (b == 0) {
+            throw new ArithmeticException("Недопустимо деление на ноль.");
+        }
+        return a % b;
+    }
 
-//      Задача 17
-//        System.out.print("Введите два целых числа A и B для поиска простых чисел: ");
-//        int startRange = scanner.nextInt();
-//        int endRange = scanner.nextInt();
-//        System.out.println("Простые числа в диапазоне от " + startRange + " до " + endRange + ":");
-//        for (int i = startRange; i <= endRange; i++) {
-//            if (i > 1) {
-//                boolean isPrimeRange = true;
-//                for (int j = 2; j <= Math.sqrt(i); j++) {
-//                    if (i % j == 0) {
-//                        isPrimeRange = false;
-//                        break;
-//                    }
-//                }
-//                if (isPrimeRange) {
-//                    System.out.print(i + " ");
-//                }
-//            }
-//        }
-//        scanner.close();
+    // 18. Квадратный корень
+    public static double squareRoot(double number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("Отрицательное число не имеет квадратного корня.");
+        }
+        return Math.sqrt(number);
+    }
 
-//      Задача 18
-//        System.out.print("Введите строку для подсчета гласных и согласных(только английский алфавит): ");
-//        String vowelsString = scanner.nextLine();
-//        int vowelsCount = 0, consonantsCount = 0;
-//        for (char c : vowelsString.toCharArray()) {
-//            if (Character.isLetter(c)) {
-//                if ("AEIOUYaeiouy".contains(String.valueOf(c))) {
-//                    vowelsCount++;
-//                } else {
-//                    consonantsCount++;
-//                }
-//            }
-//        }
-//        System.out.println("Количество гласных: " + vowelsCount);
-//        System.out.println("Количество согласных: " + consonantsCount);
-//        scanner.close();
+    // 19. Конвертер температуры
+    public static double convertCelsiusToFahrenheit(double celsius) {
+        if (celsius < -273.15) {
+            throw new IllegalArgumentException("Температура не может быть ниже абсолютного нуля.");
+        }
+        return (celsius * 9/5) + 32;
+    }
 
-//      Задача 19
-//        System.out.print("Введите строку с несколькими словами: ");
-//        String[] words = scanner.nextLine().split(" ");
-//        StringBuilder reversedWords = new StringBuilder();
-//        for (int i = words.length - 1; i >= 0; i--) {
-//            reversedWords.append(words[i]).append(" ");
-//        }
-//        System.out.println("Слова в обратном порядке: " + reversedWords.toString().trim());
-//        scanner.close();
-
-//      Задача 20
-//        System.out.print("Введите целое число для проверки на число Армстронга: ");
-//        int armstrongNumber = scanner.nextInt();
-//        int digitsCount = String.valueOf(armstrongNumber).length();
-//        int sumOfPowers = 0;
-//        int temp = armstrongNumber;
-//        while (temp > 0) {
-//            int digit = temp % 10;
-//            sumOfPowers += Math.pow(digit, digitsCount);
-//            temp /= 10;
-//        }
-//        System.out.println(armstrongNumber + " является числом Армстронга: " + (sumOfPowers == armstrongNumber));
-//        scanner.close();
+    // 20. Проверка строки на пустоту
+    public static void checkStringEmpty(String str) {
+        if (str == null || str.isEmpty()) {
+            throw new IllegalArgumentException("Строка пустая или равна null.");
+        }
     }
 }
