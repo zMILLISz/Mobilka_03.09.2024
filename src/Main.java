@@ -4,204 +4,110 @@ import java.util.Scanner;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
-//Задача 1
-//class Person {
-//    private String name;
-//    private int age;
-//    private String gender;
-//
-//    public Person(String name, int age, String gender) {
-//        this.name = name;
-//        this.age = age;
-//        this.gender = gender;
-//    }
-//
-//    public void displayInfo() {
-//        System.out.println("Имя: " + name + ", Возвраст: " + age + ", Пол: " + gender);
-//    }
-//
-//    public void incrementAge() {
-//        age++;
-//    }
-//
-//    public void changeName(String newName) {
-//        name = newName;
-//    }
-//}
-
-//Задача 2
-//class Worker extends Person {
-//    private double salary;
-//
-//    public Worker(String name, int age, String gender, double salary) {
-//        super(name, age, gender);
-//        this.salary = salary;
-//    }
-//}
-//
-//class Manager extends Worker {
-//    private int numberOfSubordinates;
-//
-//    public Manager(String name, int age, String gender, double salary, int numberOfSubordinates) {
-//        super(name, age, gender, salary);
-//        this.numberOfSubordinates = numberOfSubordinates;
-//    }
-//}
-
-//Задача 3
+////Задача 1
 //interface Animal {
-//    void makeSound();
+//    void eat();
+//    void sleep();
 //}
 //
-//class Dog implements Animal {
-//    public void makeSound() {
-//        System.out.println("Гав!");
+//abstract class Mammal implements Animal {
+//    public abstract void walk();
+//}
+//
+//class Lion extends Mammal {
+//    @Override
+//    public void eat() {
+//        System.out.println("Лев кушает мясо.");
+//    }
+//
+//    @Override
+//    public void sleep() {
+//        System.out.println("Лев спит в тени.");
+//    }
+//
+//    @Override
+//    public void walk() {
+//        System.out.println("Лев идет.");
 //    }
 //}
 //
-//class Cat implements Animal {
-//    public void makeSound() {
-//        System.out.println("Мяу!");
+//class Elephant extends Mammal {
+//    @Override
+//    public void eat() {
+//        System.out.println("Слон ест траву и листья.");
 //    }
-//}
 //
-//class Cow implements Animal {
-//    public void makeSound() {
-//        System.out.println("Му!");
+//    @Override
+//    public void sleep() {
+//        System.out.println("Слон спит стоя.");
+//    }
+//
+//    @Override
+//    public void walk() {
+//        System.out.println("Слон идет медленно.");
 //    }
 //}
 //
 //public class Main {
 //    public static void main(String[] args) {
-//        Animal[] animals = {new Dog(), new Cat(), new Cow()};
-//        for (Animal animal : animals) {
-//            animal.makeSound();
-//        }
+//        Lion lion = new Lion();
+//        Elephant elephant = new Elephant();
+//
+//        // Поведение льва
+//        System.out.println("Поведение льва:");
+//        lion.eat();
+//        lion.sleep();
+//        lion.walk();
+//
+//        System.out.println();
+//
+//        // Поведение слона
+//        System.out.println("Поведение слона:");
+//        elephant.eat();
+//        elephant.sleep();
+//        elephant.walk();
 //    }
 //}
 
-//Задача 4
-//abstract class Transport {
-//    abstract void move();
+////Задача 2
+//interface Shape {
+//    double area();
+//    double perimeter();
 //}
 //
-//class Car extends Transport {
-//    void move() {
-//        System.out.println("Машина едет.");
-//    }
+//abstract class Polygon implements Shape {
+//    public abstract int numberOfSides();
 //}
 //
-//class Bike extends Transport {
-//    void move() {
-//        System.out.println("Велосипед едет.");
-//    }
-//}
-
-//Задача 5
-//import java.util.ArrayList;
+//class Triangle extends Polygon {
+//    private double side1;
+//    private double side2;
+//    private double side3;
 //
-//class Book {
-//    private String title;
-//    private String author;
-//    private int year;
-//
-//    public Book(String title, String author, int year) {
-//        this.title = title;
-//        this.author = author;
-//        this.year = year;
+//    public Triangle(double side1, double side2, double side3) {
+//        this.side1 = side1;
+//        this.side2 = side2;
+//        this.side3 = side3;
 //    }
 //
-//    public String getAuthor() {
-//        return author;
+//    @Override
+//    public double area() {
+//        double s = perimeter() / 2; // Полупериметр
+//        return Math.sqrt(s * (s - side1) * (s - side2) * (s - side3));
 //    }
 //
-//    public int getYear() {
-//        return year;
-//    }
-//}
-//
-//class Library {
-//    private ArrayList<Book> books = new ArrayList<>();
-//
-//    public void addBook(Book book) {
-//        books.add(book);
+//    @Override
+//    public double perimeter() {
+//        return side1 + side2 + side3;
 //    }
 //
-//    public void findByAuthor(String author) {
-//        for (Book book : books) {
-//            if (book.getAuthor().equals(author)) {
-//                System.out.println("Книга: " + book.getAuthor());
-//            }
-//        }
-//    }
-//
-//    public void findByYear(int year) {
-//        for (Book book : books) {
-//            if (book.getYear() == year) {
-//                System.out.println("Книга: " + book.getAuthor());
-//            }
-//        }
-//    }
-//}
-
-//Задача 6
-//class BankAccount {
-//    private String accountNumber;
-//    private double balance;
-//
-//    public BankAccount(String accountNumber) {
-//        this.accountNumber = accountNumber;
-//        this.balance = 0;
-//    }
-//
-//    public void deposit(double amount) {
-//        balance += amount;
-//    }
-//
-//    public void withdraw(double amount) {
-//        if (amount <= balance) {
-//            balance -= amount;
-//        } else {
-//            System.out.println("Недостаточно средств!");
-//        }
-//    }
-//
-//    public double getBalance() {
-//        return balance;
-//    }
-//}
-
-//Задача 7
-//class Counter {
-//    private static int count = 0;
-//
-//    public Counter() {
-//        count++;
-//    }
-//
-//    public static int getCount() {
-//        return count;
-//    }
-//}
-
-//Задача 8
-//abstract class Shape {
-//    abstract double getArea();
-//}
-//
-//class Circle extends Shape {
-//    private double radius;
-//
-//    public Circle(double radius) {
-//        this.radius = radius;
-//    }
-//
-//    double getArea() {
-//        return Math.PI * radius * radius;
+//    @Override
+//    public int numberOfSides() {
+//        return 3;
 //    }
 //}
 //
-//class Rectangle extends Shape {
+//class Rectangle extends Polygon {
 //    private double width;
 //    private double height;
 //
@@ -210,500 +116,283 @@ import java.util.List;
 //        this.height = height;
 //    }
 //
-//    double getArea() {
+//    @Override
+//    public double area() {
 //        return width * height;
 //    }
-//}
-
-//Задача 9
-//class Animal {
-//    void move() {
-//        System.out.println("Животное движется.");
+//
+//    @Override
+//    public double perimeter() {
+//        return 2 * (width + height);
+//    }
+//
+//    @Override
+//    public int numberOfSides() {
+//        return 4;
 //    }
 //}
 //
-//class Fish extends Animal {
-//    void move() {
-//        System.out.println("Рыба плавает.");
+//class Circle implements Shape {
+//    private double radius;
+//
+//    public Circle(double radius) {
+//        this.radius = radius;
+//    }
+//
+//    @Override
+//    public double area() {
+//        return Math.PI * radius * radius;
+//    }
+//
+//    @Override
+//    public double perimeter() {
+//        return 2 * Math.PI * radius;
 //    }
 //}
 //
-//class Bird extends Animal {
-//    void move() {
-//        System.out.println("Птица летает.");
-//    }
-//}
+//public class Main {
+//    public static void main(String[] args) {
+//        Triangle triangle = new Triangle(3, 4, 5);
+//        Rectangle rectangle = new Rectangle(5, 10);
+//        Circle circle = new Circle(7);
 //
-//class Dog extends Animal {
-//    void move() {
-//        System.out.println("Собака бегает.");
-//    }
-//}
-
-//Задача 10
-//import java.util.ArrayList;
-//import java.util.Collections;
-//import java.util.Comparator;
+//        System.out.println("Треугольник:");
+//        System.out.println("Площадь: " + triangle.area());
+//        System.out.println("Периметр: " + triangle.perimeter());
+//        System.out.println("Количество сторон: " + triangle.numberOfSides());
+//        System.out.println();
 //
-//class Student {
-//    private String name;
-//    private String group;
-//    private double grade;
+//        System.out.println("Прямоугольник:");
+//        System.out.println("Площадь: " + rectangle.area());
+//        System.out.println("Периметр: " + rectangle.perimeter());
+//        System.out.println("Количество сторон: " + rectangle.numberOfSides());
+//        System.out.println();
 //
-//    public Student(String name, String group, double grade) {
-//        this.name = name;
-//        this.group = group;
-//        this.grade = grade;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public double getGrade() {
-//        return grade;
-//    }
-//}
-//
-//class University {
-//    private ArrayList<Student> students = new ArrayList<>();
-//
-//    public void addStudent(Student student) {
-//        students.add(student);
-//    }
-//
-//    public void sortByName() {
-//        Collections.sort(students, Comparator.comparing(Student::getName));
-//    }
-//
-//    public void filterByGrade(double minGrade) {
-//        for (Student student : students) {
-//            if (student.getGrade() >= minGrade) {
-//                System.out.println("Студент: " + student.getName());
-//            }
-//        }
+//        System.out.println("Круг:");
+//        System.out.println("Площадь: " + circle.area());
+//        System.out.println("Периметр: " + circle.perimeter());
 //    }
 //}
 
-//Задача 11
-//import java.util.ArrayList;
+////Задача 3
+//interface Device {
+//    void turnOn();
+//    void turnOff();
+//}
 //
-//class Product {
-//    private String name;
-//    private double price;
-//    private int quantity;
+//abstract class ElectronicDevice implements Device {
+//    public abstract int getPowerConsumption();
+//}
 //
-//    public Product(String name, double price, int quantity) {
-//        this.name = name;
-//        this.price = price;
-//        this.quantity = quantity;
+//class TV extends ElectronicDevice {
+//    private boolean isOn;
+//
+//    public TV() {
+//        this.isOn = false;
 //    }
 //
-//    public String getName() {
-//        return name;
+//    @Override
+//    public void turnOn() {
+//        isOn = true;
+//        System.out.println("Телевизор включен.");
+//    }
+//
+//    @Override
+//    public void turnOff() {
+//        isOn = false;
+//        System.out.println("Телевизор выключен.");
+//    }
+//
+//    @Override
+//    public int getPowerConsumption() {
+//        return 100;
 //    }
 //}
 //
-//class Store {
-//    private ArrayList<Product> products = new ArrayList<>();
+//class Computer extends ElectronicDevice {
+//    private boolean isOn;
 //
-//    public void addProduct(Product product) {
-//        products.add(product);
+//    public Computer() {
+//        this.isOn = false;
 //    }
 //
-//    public void removeProduct(Product product) {
-//        products.remove(product);
+//    @Override
+//    public void turnOn() {
+//        isOn = true;
+//        System.out.println("Компьютер включен.");
 //    }
 //
-//    public Product findByName(String name) {
-//        for (Product product : products) {
-//            if (product.getName().equals(name)) {
-//                return product;
-//            }
-//        }
-//        return null;
-//    }
-//}
-
-//Задача 12
-//interface PaymentSystem {
-//    void pay();
-//    void refund();
-//}
-//
-//class CreditCard implements PaymentSystem {
-//    public void pay() {
-//        System.out.println("Оплата кредитной картой.");
+//    @Override
+//    public void turnOff() {
+//        isOn = false;
+//        System.out.println("Компьютер выключен.");
 //    }
 //
-//    public void refund() {
-//        System.out.println("Возврат средств на кредитную карту.");
+//    @Override
+//    public int getPowerConsumption() {
+//        return 250;
 //    }
 //}
 //
-//class PayPal implements PaymentSystem {
-//    public void pay() {
-//        System.out.println("Оплата через PayPal.");
-//    }
+//public class Main {
+//    public static void main(String[] args) {
+//        TV tv = new TV();
+//        Computer computer = new Computer();
 //
-//    public void refund() {
-//        System.out.println("Возврат средств через PayPal.");
-//    }
-//}
-
-//Задача 13
-//import java.util.UUID;
+//        System.out.println("Управление устройствами:");
 //
-//class UniqueID {
-//    private static int count = 0;
-//    private String id;
+//        tv.turnOn();
+//        System.out.println("Потребляемая мощность телевизора: " + tv.getPowerConsumption() + " Вт");
+//        tv.turnOff();
+//        System.out.println();
 //
-//    public UniqueID() {
-//        this.id = UUID.randomUUID().toString();
-//        count++;
-//    }
-//
-//    public static int getCount() {
-//        return count;
-//    }
-//
-//    public String getId() {
-//        return id;
+//        computer.turnOn();
+//        System.out.println("Потребляемая мощность компьютера: " + computer.getPowerConsumption() + " Вт");
+//        computer.turnOff();
 //    }
 //}
 
-//Задача 14
-//class Point {
-//    private double x;
-//    private double y;
-//
-//    public Point(double x, double y) {
-//        this.x = x;
-//        this.y = y;
-//    }
-//
-//    public double getX() {
-//        return x;
-//    }
-//
-//    public double getY() {
-//        return y;
-//    }
+////Задача 4
+//interface Product {
+//    double getPrice();
+//    String getName();
 //}
 //
-//class Rectangle {
-//    private Point topLeft;
-//    private Point bottomRight;
-//
-//    public Rectangle(Point topLeft, Point bottomRight) {
-//        this.topLeft = topLeft;
-//        this.bottomRight = bottomRight;
-//    }
-//
-//    public double getArea() {
-//        double width = bottomRight.getX() - topLeft.getX();
-//        double height = topLeft.getY() - bottomRight.getY();
-//        return width * height;
-//    }
-//}
-
-//Задача 15
-//class ComplexNumber {
-//    private double real;
-//    private double imaginary;
-//
-//    public ComplexNumber(double real, double imaginary) {
-//        this.real = real;
-//        this.imaginary = imaginary;
-//    }
-//
-//    public ComplexNumber add(ComplexNumber other) {
-//        return new ComplexNumber(this.real + other.real, this.imaginary + other.imaginary);
-//    }
-//
-//    public ComplexNumber subtract(ComplexNumber other) {
-//        return new ComplexNumber(this.real - other.real, this.imaginary - other.imaginary);
-//    }
-//
-//    public ComplexNumber multiply(ComplexNumber other) {
-//        return new ComplexNumber(this.real * other.real - this.imaginary * other.imaginary,
-//                this.real * other.imaginary + this.imaginary * other.real);
-//    }
-//
-//    public ComplexNumber divide(ComplexNumber other) {
-//        double denominator = other.real * other.real + other.imaginary * other.imaginary;
-//        return new ComplexNumber((this.real * other.real + this.imaginary * other.imaginary) / denominator,
-//                (this.imaginary * other.real - this.real * other.imaginary) / denominator);
-//    }
-//}
-
-//Задача 16
-//class Matrix {
-//    private int[][] data;
-//
-//    public Matrix(int rows, int cols) {
-//        data = new int[rows][cols];
-//    }
-//
-//    public Matrix add(Matrix other) {
-//        // Проверка и добавление.
-//        return new Matrix(data.length, data[0].length); // Упрощенно
-//    }
-//
-//    public Matrix multiply(Matrix other) {
-//        // Проверка и умножение.
-//        return new Matrix(data.length, other.data[0].length); // Упрощенно
-//    }
-//}
-
-//Задача 17
-//class Player {
-//    private String name;
-//    private int health;
-//
-//    public Player(String name) {
-//        this.name = name;
-//        this.health = 100;
-//    }
-//
-//    public void attack(Enemy enemy) {
-//        System.out.println(name + " атакует " + enemy.getName());
-//        enemy.takeDamage(10);
-//    }
-//}
-//
-//class Enemy {
-//    private String name;
-//    private int health;
-//
-//    public Enemy(String name) {
-//        this.name = name;
-//        this.health = 100;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void takeDamage(int amount) {
-//        health -= amount;
-//        System.out.println(name + " получил " + amount + " урона.");
-//    }
-//}
-//
-//class Weapon {
-//    private String name;
-//    private int damage;
-//
-//    public Weapon(String name, int damage) {
-//        this.name = name;
-//        this.damage = damage;
-//    }
-//}
-
-//Задача 18
-//import java.util.ArrayList;
-//
-//class Product {
+//abstract class PhysicalProduct implements Product {
 //    private String name;
 //    private double price;
 //
-//    public Product(String name, double price) {
+//    public PhysicalProduct(String name, double price) {
 //        this.name = name;
 //        this.price = price;
 //    }
 //
+//    @Override
+//    public String getName() {
+//        return name;
+//    }
+//
+//    @Override
+//    public double getPrice() {
+//        return price;
+//    }
+//
+//    public abstract double getWeight();
+//}
+//
+//class Book extends PhysicalProduct {
+//    private double weight;
+//
+//    public Book(String name, double price, double weight) {
+//        super(name, price);
+//        this.weight = weight;
+//    }
+//
+//    @Override
+//    public double getWeight() {
+//        return weight;
+//    }
+//}
+//
+//class Software implements Product {
+//    private String name;
+//    private double price;
+//
+//    public Software(String name, double price) {
+//        this.name = name;
+//        this.price = price;
+//    }
+//
+//    @Override
+//    public String getName() {
+//        return name;
+//    }
+//
+//    @Override
 //    public double getPrice() {
 //        return price;
 //    }
 //}
 //
-//class Order {
-//    private ArrayList<Product> products = new ArrayList<>();
+//public class Main {
+//    public static void main(String[] args) {
+//        Book book = new Book("Великий Гэтсби", 499.99, 0.3);
+//        Software software = new Software("Антивирус", 1999.99);
 //
-//    public void addProduct(Product product) {
-//        products.add(product);
-//    }
-//
-//    public double totalCost() {
-//        double total = 0;
-//        for (Product product : products) {
-//            total += product.getPrice();
-//        }
-//        return total;
-//    }
-//}
-//
-//class Customer {
-//    private String name;
-//
-//    public Customer(String name) {
-//        this.name = name;
-//    }
-//
-//    public String getName() {
-//        return name;
+//        System.out.println("Товары в магазине:");
+//        System.out.println("Название: " + book.getName() + ", Цена: " + book.getPrice() + " руб., Вес: " + book.getWeight() + " кг");
+//        System.out.println("Название: " + software.getName() + ", Цена: " + software.getPrice() + " руб.");
 //    }
 //}
 
-//Задача 19
-//class Device {
-//    private String brand;
-//
-//    public Device(String brand) {
-//        this.brand = brand;
-//    }
-//
-//    public void turnOn() {
-//        System.out.println("Устройство включено.");
-//    }
-//
-//    public void turnOff() {
-//        System.out.println("Устройство выключено.");
-//    }
-//}
-//
-//class Smartphone extends Device {
-//    public Smartphone(String brand) {
-//        super(brand);
-//    }
-//
-//    public void takePhoto() {
-//        System.out.println("Снимок сделан.");
-//    }
-//}
-//
-//class Laptop extends Device {
-//    public Laptop(String brand) {
-//        super(brand);
-//    }
-//}
+//Задача 5
+interface Athlete {
+    void train();
+    void compete();
+}
 
-//Задача 20
-import java.util.Scanner;
+abstract class Runner implements Athlete {
+    private double bestTime;
 
-// Класс для представления игрока
-class Player {
-    private String name;
-    private char symbol;
-
-    public Player(String name, char symbol) {
-        this.name = name;
-        this.symbol = symbol;
+    public Runner(double bestTime) {
+        this.bestTime = bestTime;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public char getSymbol() {
-        return symbol;
+    public double getBestTime() {
+        return bestTime;
     }
 }
 
-// Класс для управления логикой игры
-class Game {
-    private char[][] board;
-    private Player player1;
-    private Player player2;
-    private Player currentPlayer;
+class Sprinter extends Runner {
 
-    public Game(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
-        this.currentPlayer = player1;
-        board = new char[3][3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board[i][j] = ' ';
-            }
-        }
+    // Конструктор
+    public Sprinter(double bestTime) {
+        super(bestTime);
     }
 
-    public void printBoard() {
-        System.out.println("  0 1 2");
-        for (int i = 0; i < 3; i++) {
-            System.out.print(i + " ");
-            for (int j = 0; j < 3; j++) {
-                System.out.print(board[i][j]);
-                if (j < 2) System.out.print("|");
-            }
-            System.out.println();
-            if (i < 2) System.out.println("  -----");
-        }
+    @Override
+    public void train() {
+        System.out.println("Бегун тренируется на максимальной скорости на короткие дистанции.");
     }
 
-    public boolean isValidMove(int row, int col) {
-        return row >= 0 && row < 3 && col >= 0 && col < 3 && board[row][col] == ' ';
-    }
-
-    public void makeMove(int row, int col) {
-        board[row][col] = currentPlayer.getSymbol();
-        currentPlayer = (currentPlayer == player1) ? player2 : player1;
-    }
-
-    public boolean checkWin() {
-        char symbol = (currentPlayer == player1) ? player2.getSymbol() : player1.getSymbol();
-        // Проверка строк, столбцов и диагоналей
-        for (int i = 0; i < 3; i++) {
-            if ((board[i][0] == symbol && board[i][1] == symbol && board[i][2] == symbol) ||
-                    (board[0][i] == symbol && board[1][i] == symbol && board[2][i] == symbol)) {
-                return true;
-            }
-        }
-        return (board[0][0] == symbol && board[1][1] == symbol && board[2][2] == symbol) ||
-                (board[0][2] == symbol && board[1][1] == symbol && board[2][0] == symbol);
-    }
-
-    public boolean isBoardFull() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (board[i][j] == ' ') {
-                    return false;
-                }
-            }
-        }
-        return true;
+    @Override
+    public void compete() {
+        System.out.println("Бегун участвует в забеге на 100 метров.");
     }
 }
 
-// Класс для запуска игры
-public class TicTacToe {
+class MarathonRunner extends Runner {
+
+    // Конструктор
+    public MarathonRunner(double bestTime) {
+        super(bestTime);
+    }
+
+    @Override
+    public void train() {
+        System.out.println("Марафонец тренируется на длинные дистанции для повышения выносливости.");
+    }
+
+    @Override
+    public void compete() {
+        System.out.println("Марафонец участвует в марафоне на 34 километра.");
+    }
+}
+
+// Основной класс для тестирования
+public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите имя первого игрока: ");
-        String name1 = scanner.nextLine();
-        System.out.print("Введите имя второго игрока: ");
-        String name2 = scanner.nextLine();
+        Sprinter sprinter = new Sprinter(7.45);
+        MarathonRunner marathonRunner = new MarathonRunner(100.0);
 
-        Player player1 = new Player(name1, 'X');
-        Player player2 = new Player(name2, 'O');
-        Game game = new Game(player1, player2);
+        System.out.println("Спортсмены: ");
 
-        while (true) {
-            game.printBoard();
-            System.out.print(game.currentPlayer.getName() + ", введите строку и столбец (например, 1 2): ");
-            int row = scanner.nextInt();
-            int col = scanner.nextInt();
+        sprinter.train();
+        sprinter.compete();
+        System.out.println("Лучшее время бегуна: " + sprinter.getBestTime() + " секунд.\n");
 
-            if (game.isValidMove(row, col)) {
-                game.makeMove(row, col);
-                if (game.checkWin()) {
-                    game.printBoard();
-                    System.out.println("Поздравляем! Игрок " + (game.currentPlayer == player1 ? player2.getName() : player1.getName()) + " победил!");
-                    break;
-                }
-                if (game.isBoardFull()) {
-                    game.printBoard();
-                    System.out.println("Игра окончилась вничью!");
-                    break;
-                }
-            } else {
-                System.out.println("Недопустимый ход, попробуйте еще раз.");
-            }
-        }
-        scanner.close();
+        marathonRunner.train();
+        marathonRunner.compete();
+        System.out.println("Лучшее время марафонца: " + marathonRunner.getBestTime() + " минут.");
     }
 }
-
-
